@@ -29,7 +29,7 @@ sed -i '1d;$ d;s/  //;s/"//g;s/,//;s/:/=/' gitversion.txt
 **Script body**
 
 ```powershell
-(dotnet gitversion | ConvertFrom-Json).PSObject.Properties | ForEach-Object { Write-Output "$($_.Name)=$($_.Value)" } | Out-File -Encoding UTF8 -FilePath gitversion.txt
+(dotnet gitversion | Out-String | ConvertFrom-Json).PSObject.Properties | ForEach-Object { Write-Output "$($_.Name)=$($_.Value)" } | Out-File -Encoding UTF8 -FilePath gitversion.txt
 ```
 
 ### Task: Inject Bamboo variables Configuration
